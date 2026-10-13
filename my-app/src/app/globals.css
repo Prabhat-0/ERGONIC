@@ -11,6 +11,9 @@
   --color-orange:#F3823F;
   --font-metal: var(--font-metal);
   --font-outfit: var(--font-outfit);
+  /* globals.css */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 
