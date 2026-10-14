@@ -31,32 +31,67 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // close the menu after navigating to another page
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  // close the menu when the screen grows into desktop layout (xl = 1280px)
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1280px)')
+    const onChange = (e) => {
+      if (e.matches) setOpen(false)
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  // Escape closes the menu, and the page behind it doesn't scroll while it's open
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   return (
     <header className='fixed top-0 left-0 z-50 w-full'>
       <nav
-        className={`flex w-full items-center justify-between px-6 py-6 transition-colors duration-300 ${
-          scrolled ? 'bg-black' : 'bg-transparent'
+        className={`flex w-full items-center justify-between gap-3 px-4 py-3 transition-colors duration-300 sm:px-6 sm:py-4 xl:px-10 xl:py-6 ${
+          scrolled || open ? 'bg-black' : 'bg-transparent'
         }`}
       >
         {/* Logo */}
-        <Link href='/' className='w-fit h-auto cursor-pointer' onClick={() => setOpen(false)}>
+        <Link
+          href='/'
+          aria-label='Home'
+          className='block shrink-0 cursor-pointer'
+          onClick={() => setOpen(false)}
+        >
           <Image
             src={logo}
             alt='logo'
-            
             priority
-            className='h-auto max-w-60 object-cover'
+            sizes='(max-width: 640px) 112px, (max-width: 1536px) 176px, 240px'
+            className='h-auto w-28 object-contain sm:w-36 xl:w-44 2xl:w-60'
           />
         </Link>
 
-        <div className='flex items-center gap-3 xl:gap-10 2xl:gap-50'>
-          {/* Desktop links */}
-          <ul className='hidden px-4 py-2 bg-white/5 rounded-full items-center justify-between gap-4 lg:flex xl:gap-10'>
+        <div className='flex min-w-0 items-center gap-3 xl:gap-24'>
+          {/* Desktop links (xl and up) */}
+          <ul className='hidden items-center gap-1 rounded-full bg-white/5 px-3 py-2 xl:flex 2xl:gap-6 2xl:px-4'>
             {NavItem.map((item) => (
               <li key={item.text}>
                 <Link
                   href={item.path}
-                  className='cursor-pointer rounded-2xl border border-transparent px-4 py-2 text-base font-light leading-7.5 tracking-[-0.06em] text-white transition-all duration-300 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange hover:backdrop-blur-2xl'
+                  className={`block cursor-pointer rounded-2xl border border-transparent px-3 py-2 text-base leading-7.5 font-light tracking-[-0.06em] whitespace-nowrap transition-all duration-300 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange hover:backdrop-blur-2xl 2xl:px-4 ${
+                    pathname === item.path ? 'text-orange' : 'text-white'
+                  }`}
                 >
                   {item.text}
                 </Link>
@@ -66,13 +101,18 @@ const NavBar = () => {
 
           {/* CTA + hamburger */}
           <div className='flex items-center gap-3'>
-            <Button text="Let's Connect"/>
+            {/* On phones the CTA lives inside the mobile menu instead */}
+            <div className='hidden sm:block'>
+              <Button text="Let's Connect" />
+            </div>
 
             <button
-              onClick={() => setOpen(!open)}
+              type='button'
+              onClick={() => setOpen((v) => !v)}
               aria-label='Toggle menu'
               aria-expanded={open}
-              className='flex h-10 w-10 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 lg:hidden'
+              aria-controls='mobile-menu'
+              className='flex size-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 focus-visible:outline-2 focus-visible:outline-orange sm:size-11 xl:hidden'
             >
               <span
                 className={`h-px w-5 bg-white transition-all duration-300 ${
@@ -89,19 +129,23 @@ const NavBar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu  */}
+      {/* Mobile / tablet menu (below xl) */}
       <div
-        className={`mx-4 mt-2 overflow-hidden rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl transition-all duration-500 md:mx-6 lg:hidden ${
-          open ? 'max-h-125 opacity-100' : 'max-h-0 border-transparent opacity-0'
+        id='mobile-menu'
+        className={` overflow-hidden w-full rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl transition-all duration-500 sm:mx-6 md:ml-auto md:w-80 xl:hidden ${
+          open
+            ? 'max-h-[calc(100dvh-5.5rem)] overflow-y-auto opacity-100'
+            : 'pointer-events-none max-h-0 border-transparent opacity-0'
         }`}
       >
-        <ul className='flex flex-col p-3'>
+        <ul className='flex flex-col p-2 sm:p-3'>
           {NavItem.map((item) => (
             <li key={item.text}>
               <Link
                 href={item.path}
                 onClick={() => setOpen(false)}
-                className={`block rounded-xl px-4 py-3 text-lg font-light transition-colors ${
+                tabIndex={open ? 0 : -1}
+                className={`block rounded-xl px-4 py-3 text-base font-light transition-colors sm:text-lg ${
                   pathname === item.path ? 'text-orange' : 'text-white/80 hover:text-orange'
                 }`}
               >
@@ -113,7 +157,8 @@ const NavBar = () => {
             <Link
               href='#'
               onClick={() => setOpen(false)}
-              className='flex items-center justify-between rounded-xl bg-orange px-4 py-3 font-medium uppercase text-black'
+              tabIndex={open ? 0 : -1}
+              className='flex items-center justify-between rounded-xl bg-orange px-4 py-3 font-medium text-black uppercase'
             >
               Let&apos;s Connect <Arrow />
             </Link>

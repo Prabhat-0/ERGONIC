@@ -5,7 +5,7 @@ const Button = ({text}) => {
   return (
      <Link
               href='#'
-              className='group relative  z-10 hidden w-fit items-center justify-between gap-5 xl:gap-10 overflow-hidden rounded-full border border-orange px-4 py-4 text-base font-medium leading-5 tracking-[-0.03em] whitespace-nowrap text-white transition-colors duration-300 hover:text-black sm:flex'
+              className='group relative  z-10 flex w-fit items-center justify-between gap-5 xl:gap-10 overflow-hidden rounded-full border border-orange px-6 py-4 text-base font-medium leading-5 tracking-[-0.03em] whitespace-nowrap text-white transition-all duration-300 '
             >
               {/* orange fill sweeps in on hover */}
               <span className='absolute inset-0 -z-10 origin-left scale-x-0 bg-orange  transition-transform duration-300 ease-out group-hover:scale-x-100' />
