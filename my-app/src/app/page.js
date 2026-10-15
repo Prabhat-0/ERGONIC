@@ -85,66 +85,87 @@ export default function Home() {
     return (
         <div className="w-full h-auto ">
             {/** HERO Section */}
-            <Hero image={HeroBg} headerText={"Future Industries"} MainHeaderText={"Designed Today."} ParaText={"Trusted by top investors and financial partners worldwide"} />
+            <Hero id="mainHero" image={HeroBg} headerText={"Future Industries"} MainHeaderText={"Designed Today."} ParaText={"Trusted by top investors and financial partners worldwide"} />
             {/**About  */}
             <section id="about" className="w-full h-auto px-4 md:px-6 lg:px-10 xl:px-0 py-10 md:py-16 lg:py-0 lg:h-[668px] flex items-center justify-center relative bg-[#0D0D0D]">
-                <Image src={RoboticsElectronics} quality={80} className="absolute bottom-4 left-0 w-full h-auto" />
+                <Image src={RoboticsElectronics} quality={[75,90]} loading="lazy" alt="RoboticsElectornicsImg" className="absolute bottom-4 left-0 w-full h-auto" />
                 <ParaButton para={roboticsElectronicsPara} text="know more" />
             </section>
             <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
 
             {/**Projects  */}
-            <section id="projects" className="w-full bg-black grid place-items-center pt-10 md:pt-20 lg:pt-30 xl:pt-38 gap-10 pb-10">
+            <section
+                id="projects"
+                className="w-full overflow-x-clip bg-black grid place-items-center pt-10 md:pt-20 lg:pt-30 xl:pt-38 gap-10 pb-10"
+            >
                 <Container>
-                    <PageHeading heading={"featured work"} spanText1={"Our "} spanText2={"Stunning Projects"} para="Trusted by top investors and financial partners worldwide" />
+                    <PageHeading
+                        heading={"featured work"}
+                        spanText1={"Our "}
+                        spanText2={"Stunning Projects"}
+                        para="Trusted by top investors and financial partners worldwide"
+                    />
                 </Container>
+
                 <div className="w-full flex items-center justify-center">
                     <Container>
-                        <div className="flex w-full flex-col gap-20">
+                        <div className="flex w-full flex-col gap-14 md:gap-20">
                             {cardDetails.map((item, index) => {
                                 const flip = index % 2 === 1; // cards 2 and 4 are mirrored
 
                                 return (
-                                    <div key={item.spanText1} className="flex flex-col sm:items-center md:items-normal sm:justify-center md:justify-normal gap-10 md:border-none md:flex-row px-4 md:px-0">
+                                    <div
+                                        key={item.spanText1}
+                                        className="group perspective-distant flex flex-col items-center gap-10 rounded-2xl border border-white/20 bg-transparent px-4 py-4 shadow-2xl shadow-white/5 transition-colors duration-300 hover:bg-white/5 md:flex-row md:gap-6 md:border-none md:px-0 md:py-0 md:shadow-none md:hover:bg-transparent lg:gap-10"
+                                    >
                                         {/* Card */}
                                         <div
-                                            className={` relative order-1 flex min-h-[320px] w-full max-w-[500px] flex-col gap-3 px-5 pt-5 sm:min-h-[400px] md:min-h-[460px] ${flip ? "md:order-2 md:ml-auto" : "md:order-1"
+                                            className={`relative order-1 md:group-hover:scale-95 flex transition-all duration-300 ease-in-out w-full max-w-[500px] min-w-0 flex-col gap-3 px-5 pt-5 min-h-[clamp(320px,calc(200px+25vw),460px)] md:flex-1 md:basis-0 ${flip
+                                                    ? "md:order-2 md:ml-auto "
+                                                    : "md:order-1 "
                                                 }`}
                                         >
                                             {/* Glowing background */}
                                             <div
-                                                className={`absolute  inset-0 ${flip
-                                                    ? "bg-[linear-gradient(228.09deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
-                                                    : "bg-[linear-gradient(131.91deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
+                                                className={`absolute inset-0 ${flip
+                                                        ? "bg-[linear-gradient(228.09deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
+                                                        : "bg-[linear-gradient(131.91deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
                                                     }`}
                                             />
 
                                             {/* Outline image (top) */}
                                             <Image
                                                 src={item.outlineImage}
-                                                alt=""
+                                                alt="Outline"
+                                                loading="lazy"
+                                                quality={[75,90]}
                                                 width={item.outlieImageWidth}
-                                                className="relative z-10 h-13 md:h-20  lg:h-27.5 w-fit self-center object-contain"
+                                                className="relative hidden sm:block z-10 h-[clamp(52px,calc(25.6px+8.24vw),110px)] max-w-full w-fit self-center object-contain"
                                             />
 
-                                            {/* Main image (below the outline image, with gap-3 between them) */}
+                                            {/* Main image */}
                                             <div
-                                                className={`absolute  bottom-0 right-0 w-fit h-full ${item.height ? "max-h-[400px]" : "max-h-[300px]"} flex-1 ${flip ? "md:-left-20 " : "md:-right-20 "
+                                                className={`absolute bottom-0 right-0 h-full  w-fit max-w-full md:max-w-none flex-1 ${item.height ? "max-h-[400px]" : "max-h-[300px]"
+                                                    } ${flip
+                                                        ? "md:right-auto md:-left-[clamp(8px,4vw,80px)]"
+                                                        : "md:-right-[clamp(8px,4vw,80px)]"
                                                     }`}
                                             >
                                                 <Image
                                                     src={item.image}
+                                                    quality={[75,90]}
+                                                    loading="lazy"
                                                     alt={`${item.spanText1} ${item.spanText2}`}
                                                     className="h-full w-full object-cover"
                                                 />
                                             </div>
                                         </div>
 
-                                        {/* Text column */}
+                                        {/* Text column (styling untouched) */}
                                         <div
-                                            className={`order-2 flex w-full flex-col px-4 md:px-6 lg:px-0 items-center justify-center gap-4 text-left ${flip
-                                                ? "md:order-1 md:items-start md:text-left"
-                                                : "md:order-2 md:items-end md:text-right"
+                                            className={`order-2 flex w-full min-w-0 md:flex-1 md:basis-0 flex-col px-4 md:px-6 lg:px-0 items-center justify-center gap-4 text-left ${flip
+                                                    ? "md:order-1 md:items-start md:text-left"
+                                                    : "md:order-2 md:items-end md:text-right"
                                                 }`}
                                         >
                                             <div className="max-w-[405px]">
@@ -160,12 +181,12 @@ export default function Home() {
                                                     leading="leading-[22px] lg:leading-[24px] tracking-[-0.03em]"
                                                 />
 
-                                                <div className="mt-4 grid place-items-center relative group z-10">
+                                                <div className="mt-4 grid place-items-center relative z-10">
                                                     <Link
                                                         href="#"
-                                                        className=" relative isolate flex w-fit items-center justify-center rounded-full border  group-hover:bg-white/30 transition-all  duration-300 ease-in-out border-orange px-4 py-4 text-base font-medium text-white xl:gap-10"
+                                                        className="relative isolate flex group/btn size-12 md:size-18 items-center justify-center rounded-full border hover:bg-white/30 transition-all duration-300 ease-in-out border-orange text-base font-medium text-white xl:gap-10"
                                                     >
-                                                        <Arrow className="transition-transform duration-300 group-hover:translate-x-2" />
+                                                        <Arrow className="transition-transform size-8 duration-300 group-hover/btn:translate-x-2" />
                                                     </Link>
                                                 </div>
                                             </div>
@@ -176,14 +197,15 @@ export default function Home() {
                         </div>
                     </Container>
                 </div>
-
             </section>
             {/** services  */}
-            <section id="services" className="relative w-full h-auto grid place-items-center px-4 md:px-0  py-10 md:py-20">
-                <Image src={CreativeConcept} className="w-full absolute -top-20 left-0 object-cover z-0" />
+            <section id="services" className="relative w-full h-auto grid place-items-center px-4 md:px-0 py-0 pb-10 sm:py-5 lg:py-10 md:py-20">
+                <Image src={CreativeConcept} quality={[75,90]} alt="creativeConcept" className="w-full absolute -top-10  lg:-top-20 left-0 object-cover z-0" loading="lazy" />
                 <div className='w-full xl:max-w-282 h-auto flex flex-col items-center justify-center gap-8 md:gap-15 lg:gap-25  ' >
+                    <div className="w-full md:flex items-center justify-center hidden">
+                        <Button text="All Work" />
+                    </div>
 
-                    <Button text="All Work" />
 
 
                     <div className=" gap-8 md:gap-12 lg:gap-15 z-10 flex items-center justify-center flex-col">
@@ -204,16 +226,16 @@ export default function Home() {
 
                     <PageHeading heading="Our clients" spanText1={"Trusted by  "} spanText2={"Industry Leaders"} spanStyle="font-metal font-light lg:text-5xl md:text-2xl text-xl xl:text-[60px]" />
                     <div className="mt-2 md:mt-5 w-full grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 gap-2.5 items-center justify-center px-4 md:px-6 lg:px-0">
-                        {images.map(image => {
-                            return <div key={image} className="w-fit max-w-50 h-fit">
-                                <Image src={image} className="object-cover" />
+                        {images.map((image,index) => {
+                            return <div key={index} className="w-fit max-w-50 h-fit">
+                                <Image src={image} className="object-cover"quality={[75,90]} alt="ClientsLogo" lazyloading="lazy" />
                             </div>
                         })}
                     </div>
 
 
                 </Container>
-            </section> 
+            </section>
             <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
             <Ideas image={AmbitiousIdeas} HeaderText="Let's Buid" MainHeaderText="Ambitious Ideas" ButtonText="Build Your Project" /> <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
         </div>

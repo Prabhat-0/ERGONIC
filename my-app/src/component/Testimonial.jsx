@@ -75,6 +75,7 @@ const Testimonial = () => {
                                     <Image
                                         src={Man}
                                         alt={t.name}
+                                        quality={[75,90]}
                                         className="size-12 rounded-full object-cover md:size-15"
                                     />
                                     <div className="flex flex-col items-start">
@@ -97,7 +98,7 @@ const Testimonial = () => {
                     </button>
                 </div>
 
-                <div className="grid w-full grid-cols-2 gap-6 px-4 md:px-6 py-10 md:flex md:items-center md:justify-between md:gap-10 lg:px-30">
+                <div className="grid w-full grid-cols-2 gap-2 sm:gap-4 md:gap-6 px-4 md:px-6 py-4 sm:py-6 md:py-10 md:flex md:items-center md:justify-between md:gap-10 lg:px-30">
                     {data.map((item) => (
                         <TestiData key={item.text} number={item.number} text={item.text} />
                     ))}

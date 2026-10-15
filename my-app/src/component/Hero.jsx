@@ -8,14 +8,14 @@ const Hero = ({ image, headerText, MainHeaderText, ParaText,id="hero" }) => {
   return (
     <div
       id={id}
-      className="relative h-[40dvh] min-h-125 w-full overflow-hidden sm:h-[85svh] lg:h-screen lg:min-h-160 2xl:max-h-200"
+      className="relative h-[40dvh] min-h-100 w-full overflow-hidden sm:h-[85svh] lg:h-screen lg:min-h-160 2xl:max-h-200"
     >
       <Image
         src={image}
         alt="HeroBg"
         fill
         priority
-        quality={80}
+        quality={[75,90]}
         sizes="80vw"
         className="z-0 object-cover object-center"
       />
