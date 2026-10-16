@@ -25,7 +25,9 @@ const NavBar = () => {
 
 	// black background after scrolling 20px
 	useEffect(() => {
-		const onScroll = () => setScrolled(window.scrollY > 20)
+		const onScroll = () => {
+  setScrolled(window.scrollY > 20);
+};
 		onScroll()
 		window.addEventListener('scroll', onScroll, { passive: true })
 		return () => window.removeEventListener('scroll', onScroll)
@@ -94,7 +96,7 @@ const NavBar = () => {
 					<div className='flex items-center gap-3'>
 						{/* On phones the CTA lives inside the mobile menu instead */}
 						<div className='hidden sm:block'>
-							<Button text="Let's Connect" />
+							<Button text="Let's Connect" path="/contact" />
 						</div>
 
 						<button

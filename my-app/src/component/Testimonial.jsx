@@ -6,6 +6,7 @@ import TestiData from './TestiData';
 import ParaButton from './ParaButton';
 import Container from './Container';
 import Image from 'next/image';
+const buttonClass="shrink-0 rounded-full border border-[#5E5E5E] p-1.5 sm:p-2 transition hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[#5E5E5E] disabled:hover:text-inherit md:p-4";
 
 const data = [
     { number: "99", text: "years of design\nleadership" },
@@ -47,15 +48,15 @@ const Testimonial = () => {
     };
 
     return (
-        <section id="testimonial" className="grid w-full place-items-center bg-[linear-gradient(111.76deg,#1D1D1D_-0.79%,rgba(0,0,0,0.5)_104.11%)] py-10 md:max-h-[700px] md:py-20">
+        <section id="testimonial" className="grid w-full overflow-x-clip px-4 sm:px-0 place-items-center bg-[...] py-10 md:max-h-[700px] md:py-20">
             <Container>
-                <div className="flex items-center sm:px-4 gap-2 sm:gap-6 lg:gap-15">
+                <div className="flex w-full min-w-0 items-center sm:px-6 xl:px-0 gap-2 sm:gap-6 lg:gap-15">
                     <button
                         type="button"
                         onClick={() => scroll(-1)}
                         disabled={index === 0}
                         aria-label="Previous testimonial"
-                        className="shrink-0 rounded-full border border-[#5E5E5E] p-2 transition hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[#5E5E5E] disabled:hover:text-inherit md:p-4"
+                        className={buttonClass}
                     >
                         <LuChevronLeft className="size-4 md:size-10" strokeWidth={1} />
                     </button>
@@ -68,7 +69,7 @@ const Testimonial = () => {
                         {testimonials.map((t, i) => (
                             <div
                                 key={i}
-                                className="flex w-full shrink-0 snap-center flex-col items-center gap-5 px-1 text-center"
+                                className="flex w-full shrink-0 snap-center flex-col items-center gap-2 px-1 text-center"
                             >
                                 <ParaButton para={t.para} />
                                 <div className="flex items-center gap-4 md:gap-10">
@@ -92,7 +93,7 @@ const Testimonial = () => {
                         onClick={() => scroll(1)}
                         disabled={index === testimonials.length - 1}
                         aria-label="Next testimonial"
-                        className="shrink-0 rounded-full border border-[#5E5E5E] p-2 transition hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[#5E5E5E] disabled:hover:text-inherit md:p-4"
+                        className={buttonClass}
                     >
                         <LuChevronRight className="size-4 md:size-10" strokeWidth={1} />
                     </button>

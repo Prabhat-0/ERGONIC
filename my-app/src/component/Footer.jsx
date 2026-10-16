@@ -37,11 +37,11 @@ const Footer = () => {
                 alt="Technology expertise"
                 quality={[75,90]}
                 sizes="100vw"
-                className='w-full h-auto'
+                className='hidden md:flex w-full h-auto'
             />
 
             <Container>
-                <div className='flex flex-col w-full px-4 md:px-6 lg:px-0 pb-10 sm:pb-14 md:pb-20'>
+                <div className='flex flex-col w-full py-6 md:py-0 px-4  md:px-6 lg:px-0 pb-10 sm:pb-14 md:pb-20'>
                     {/* 2 cols mobile, 3 cols tablet, 4 cols desktop */}
                     <div className='grid grid-cols-2 gap-x-[clamp(16px,3vw,64px)] gap-y-8 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,1fr))]'>
                         {/* Heading: full row until lg */}

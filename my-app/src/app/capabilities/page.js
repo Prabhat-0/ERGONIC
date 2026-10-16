@@ -39,13 +39,13 @@ const page = () => {
 				<ParaButton para="The design work that solves real problems for our emerging futures is complex. Space stations. New modes of mobility. Transformations to industrial systems. These are the kinds of brave endeavors that require audacity and an appetite for the wonderfully difficult. It’s what you do—and it’s what we do, too." text="know more" />
 			</section>
 			{/**Capabilities and experties */}
-			<section id="capabilities" className="w-full px-4 md:px-6 lg:px-10 xl:px-0 py-16 lg:py-20 h-auto flex items-center justify-center relative bg-[#0D0D0D]">
+			<section id="capabilities" className="w-full px-4 md:px-6 lg:px-10 xl:px-0 pt-10 pb-0 md:py-16 lg:py-20 h-auto flex items-center justify-center relative bg-[#0D0D0D]">
 				<Container>
 					<PageHeading heading="what do we do" spanText1="Our " spanText2="Capabilities & Expertise" />
 					<div className='grid mt-0 md:mt-6 lg:mt-8 xl:mt-10 grid-cols-2 items-start gap-5 md:gap-10 lg:gap-15 xl:gap-25'>
 						<div className='w-full xl:max-w-282 flex flex-col items-start justify-center gap-6 md:gap-10 lg:gap-12.5 z-10 max-w-[453px]'>
 							<article className='font-metal text-base md:text-xl lg:text-2xl leading-5 md:leading-7.5 tracking-[-3%]' >{article}</article>
-							<Button text={"Know More"} />
+							<Button text={"Know More"} path='/contact'/>
 						</div>
 
 						<ul className='flex flex-col justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-10'>
@@ -70,24 +70,24 @@ const page = () => {
 				<div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#0D0D0D]/40 via-[#0D0D0D]/80 to-[#0D0D0D]" />
 
 				<Container>
-					<div className="relative z-10 flex w-full flex-col gap-10 py-10 sm:gap-14 md:gap-16 lg:gap-[90px] lg:py-16 xl:py-40">
+					<div className="relative z-10 flex w-full flex-col gap-2 py-5 md:py-10 sm:gap-10 md:gap-16 lg:gap-22.5 lg:py-16 xl:py-40">
 						{images.map((img, index) => (
 							<div
 								key={index}
-								className="group flex flex-col gap-4 rounded-2xl hover:border bg-transparent p-4 shadow-lg shadow-black/30 hover:backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] hover:shadow-2xl sm:p-5 md:gap-6 md:rounded-3xl md:p-8 lg:gap-8 lg:p-10"
+								className="group flex flex-col gap-2 md:gap-6 lg:gap-8 rounded-2xl hover:border bg-transparent p-4 sm:p-5 md:p-8  lg:p-10 shadow-lg shadow-black/30 hover:backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white/25 hover:bg-white/6 hover:shadow-2xl  md:rounded-3xl "
 							>
 								{/* Page heading */}
 								<PageHeading spanText2={heading[index]}  wrap='whitespace-pre-line'/>
 
-								<div className="grid grid-cols-1 items-center gap-6 md:gap-8 lg:grid-cols-2 lg:gap-[46px]">
+								<div className="grid grid-cols-1 items-center gap-6 md:gap-8 lg:grid-cols-2 lg:gap-11.2">
 									{/* Text column */}
-									<div className="order-2 flex h-full w-full flex-col justify-center gap-5 py-2 md:gap-6 lg:order-1 lg:max-w-[490px]">
+									<div className="order-2 flex h-full w-full flex-col justify-center gap-2 py-2 md:gap-6 lg:order-1 lg:max-w-[490px]">
 										{cardData.map((card, cardIndex) => (
 											<div
 												key={cardIndex}
 												className="border-l-2 border-white/15 pl-4 transition-colors duration-300 group-hover:border-white/40"
 											>
-												<h6 className="font-outfit text-base font-semibold text-white sm:text-lg lg:text-2xl">
+												<h6 className="font-outfit text-sm font-semibold text-white sm:text-base md:text-lg lg:text-2xl">
 													{card.header}
 												</h6>
 												<article className="mt-1 font-metal text-sm leading-relaxed text-white/70 sm:text-base lg:text-xl">

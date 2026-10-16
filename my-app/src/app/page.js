@@ -82,13 +82,14 @@ const cardDetails = [
 
 const roboticsElectronicsPara = "We are an award winning design and engineering firm specializing in the development of novel consumer electronics, medical devices, drone technology, robotics, and architectural solutions.";
 export default function Home() {
+    
     return (
         <div className="w-full h-auto ">
             {/** HERO Section */}
             <Hero id="mainHero" image={HeroBg} headerText={"Future Industries"} MainHeaderText={"Designed Today."} ParaText={"Trusted by top investors and financial partners worldwide"} />
             {/**About  */}
             <section id="about" className="w-full h-auto px-4 md:px-6 lg:px-10 xl:px-0 py-10 md:py-16 lg:py-0 lg:h-[668px] flex items-center justify-center relative bg-[#0D0D0D]">
-                <Image src={RoboticsElectronics} quality={[75,90]} loading="lazy" alt="RoboticsElectornicsImg" className="absolute bottom-4 left-0 w-full h-auto" />
+                <Image src={RoboticsElectronics} quality={[75, 90]} loading="lazy" alt="RoboticsElectornicsImg" className="absolute bottom-4 left-0 w-full h-auto" />
                 <ParaButton para={roboticsElectronicsPara} text="know more" />
             </section>
             <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
@@ -109,7 +110,7 @@ export default function Home() {
 
                 <div className="w-full flex items-center justify-center">
                     <Container>
-                        <div className="flex w-full flex-col gap-14 md:gap-20">
+                        <div className="flex w-full flex-col gap-14 md:gap-20" >
                             {cardDetails.map((item, index) => {
                                 const flip = index % 2 === 1; // cards 2 and 4 are mirrored
 
@@ -120,16 +121,16 @@ export default function Home() {
                                     >
                                         {/* Card */}
                                         <div
-                                            className={`relative order-1 md:group-hover:scale-95 flex transition-all duration-300 ease-in-out w-full max-w-[500px] min-w-0 flex-col gap-3 px-5 pt-5 min-h-[clamp(320px,calc(200px+25vw),460px)] md:flex-1 md:basis-0 ${flip
-                                                    ? "md:order-2 md:ml-auto "
-                                                    : "md:order-1 "
+                                            className={`relative order-1 flex transition-all duration-300 ease-in-out w-full max-w-[500px] min-w-0 flex-col gap-3 px-5 pt-5 min-h-[clamp(320px,calc(200px+25vw),460px)] md:flex-1 md:basis-0 ${flip
+                                                ? "md:order-2 md:ml-auto "
+                                                : "md:order-1 "
                                                 }`}
                                         >
                                             {/* Glowing background */}
                                             <div
                                                 className={`absolute inset-0 ${flip
-                                                        ? "bg-[linear-gradient(228.09deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
-                                                        : "bg-[linear-gradient(131.91deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
+                                                    ? "bg-[linear-gradient(228.09deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
+                                                    : "bg-[linear-gradient(131.91deg,#FFFFFF_0.77%,rgba(0,0,0,0)_77.2%)]"
                                                     }`}
                                             />
 
@@ -138,14 +139,14 @@ export default function Home() {
                                                 src={item.outlineImage}
                                                 alt="Outline"
                                                 loading="lazy"
-                                                quality={[75,90]}
+                                                quality={[75, 90]}
                                                 width={item.outlieImageWidth}
                                                 className="relative hidden sm:block z-10 h-[clamp(52px,calc(25.6px+8.24vw),110px)] max-w-full w-fit self-center object-contain"
                                             />
 
                                             {/* Main image */}
                                             <div
-                                                className={`absolute bottom-0 right-0 h-full  w-fit max-w-full md:max-w-none flex-1 ${item.height ? "max-h-[400px]" : "max-h-[300px]"
+                                                className={`absolute bottom-0 right-0 h-full group w-fit max-w-full md:max-w-none flex-1 ${item.height ? "max-h-[400px]" : "max-h-[300px]"
                                                     } ${flip
                                                         ? "md:right-auto md:-left-[clamp(8px,4vw,80px)]"
                                                         : "md:-right-[clamp(8px,4vw,80px)]"
@@ -153,19 +154,19 @@ export default function Home() {
                                             >
                                                 <Image
                                                     src={item.image}
-                                                    quality={[75,90]}
+                                                    quality={[75, 90]}
                                                     loading="lazy"
                                                     alt={`${item.spanText1} ${item.spanText2}`}
-                                                    className="h-full w-full object-cover"
+                                                    className="h-full w-full object-fill sm:object-contain z-20 "
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Text column (styling untouched) */}
                                         <div
-                                            className={`order-2 flex w-full min-w-0 md:flex-1 md:basis-0 flex-col px-4 md:px-6 lg:px-0 items-center justify-center gap-4 text-left ${flip
-                                                    ? "md:order-1 md:items-start md:text-left"
-                                                    : "md:order-2 md:items-end md:text-right"
+                                            className={`order-2 flex w-full min-w-0 md:flex-1 md:basis-0 flex-col px-4 md:px-6 lg:px-4 items-center justify-center gap-4 text-left ${flip
+                                                ? "md:order-1 md:items-start md:text-left"
+                                                : "md:order-2 md:items-end md:text-right"
                                                 }`}
                                         >
                                             <div className="max-w-[405px]">
@@ -194,16 +195,19 @@ export default function Home() {
                                     </div>
                                 );
                             })}
+
+
                         </div>
+                       
                     </Container>
                 </div>
             </section>
             {/** services  */}
             <section id="services" className="relative w-full h-auto grid place-items-center px-4 md:px-0 py-0 pb-10 sm:py-5 lg:py-10 md:py-20">
-                <Image src={CreativeConcept} quality={[75,90]} alt="creativeConcept" className="w-full absolute -top-10  lg:-top-20 left-0 object-cover z-0" loading="lazy" />
+                <Image src={CreativeConcept} quality={[75, 90]} alt="creativeConcept" className="w-full absolute -top-10  lg:-top-20 left-0 object-cover z-0" loading="lazy" />
                 <div className='w-full xl:max-w-282 h-auto flex flex-col items-center justify-center gap-8 md:gap-15 lg:gap-25  ' >
                     <div className="w-full md:flex items-center justify-center hidden">
-                        <Button text="All Work" />
+                        <Button text="All Work" path='/#projects' />
                     </div>
 
 
@@ -226,9 +230,9 @@ export default function Home() {
 
                     <PageHeading heading="Our clients" spanText1={"Trusted by  "} spanText2={"Industry Leaders"} spanStyle="font-metal font-light lg:text-5xl md:text-2xl text-xl xl:text-[60px]" />
                     <div className="mt-2 md:mt-5 w-full grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 gap-2.5 items-center justify-center px-4 md:px-6 lg:px-0">
-                        {images.map((image,index) => {
+                        {images.map((image, index) => {
                             return <div key={index} className="w-fit max-w-50 h-fit">
-                                <Image src={image} className="object-cover"quality={[75,90]} alt="ClientsLogo" lazyloading="lazy" />
+                                <Image src={image} className="object-cover" quality={[75, 90]} alt="ClientsLogo" lazyloading="lazy" />
                             </div>
                         })}
                     </div>
