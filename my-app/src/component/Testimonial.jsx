@@ -6,7 +6,7 @@ import TestiData from './TestiData';
 import ParaButton from './ParaButton';
 import Container from './Container';
 import Image from 'next/image';
-const buttonClass="shrink-0 rounded-full border border-[#5E5E5E] p-1.5 sm:p-2 transition hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[#5E5E5E] disabled:hover:text-inherit md:p-4";
+const buttonClass = "shrink-0 rounded-full border border-[#5E5E5E] p-1.5 sm:p-2 transition hover:border-orange hover:text-orange disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[#5E5E5E] disabled:hover:text-inherit md:p-4";
 
 const data = [
     { number: "99", text: "years of design\nleadership" },
@@ -14,20 +14,25 @@ const data = [
     { number: "275", text: "Design And Innovation\nAwards" },
 ];
 
+//Taking the two style class as in the paragraph there is 4 text , and 1st and 3rd text styling is same and 2nd and 4th styling is same 
+
+const spanText1Class = "font-metal text-[51px] "
+const spanText2Class = "font-dmSans text-[41px] "
+
 const testimonials = [
     {
-        para: "“Ergonic fast-paced, collaborative approach significantly increases the speed and effectiveness with which we are delivering our technology to end users.”",
+        parts:["“Ergonic ","fast-paced, collaborative approach\nsignificantly increases the"," speed and effectiveness\n"," with which we are delivering "," our technology to end\nusers.”",],
         name: "Alias Boron",
         company: "ABB Platform",
     },
-    {
-        para: "“Ergonic fast-paced, collaborative approach significantly increases the speed and effectiveness with which we are delivering our technology to end users.”",
-        name: "Rikki Maroen,",
+     {
+        parts:["“Ergonic ","fast-paced, collaborative approach significantly increases the"," speed and effectiveness"," with which we are delivering "," our technology to end users.”",],
+        name: "Alias Boron",
         company: "ABB Platform",
     },
-    {
-        para: "“Ergonic fast-paced, collaborative approach significantly increases the speed and effectiveness with which we are delivering our technology to end users.”",
-        name: "Ali Qadari,",
+     {
+        parts:["“Ergonic ","fast-paced, collaborative approach significantly increases the"," speed and effectiveness"," with which we are delivering "," our technology to end users.”",],
+        name: "Alias Boron",
         company: "ABB Platform",
     },
 ];
@@ -48,7 +53,8 @@ const Testimonial = () => {
     };
 
     return (
-        <section id="testimonial" className="grid w-full overflow-x-clip px-4 sm:px-0 place-items-center bg-[...] py-10 md:max-h-[700px] md:py-20">
+        <section id="testimonial" className="bg-[linear-gradient(111.76deg,#1D1D1D_-0.79%,rgba(0,0,0,0.5)_104.11%)]
+grid w-full overflow-x-clip px-4 sm:px-0 place-items-center bg-[...] py-10 md:max-h-175 md:py-20">
             <Container>
                 <div className="flex w-full min-w-0 items-center sm:px-6 xl:px-0 gap-2 sm:gap-6 lg:gap-15">
                     <button
@@ -66,17 +72,20 @@ const Testimonial = () => {
                         onScroll={handleScroll}
                         className="no-scrollbar flex min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto"
                     >
-                        {testimonials.map((t, i) => (
-                            <div
+                        {testimonials.map((t, i) => {
+                            const part=t.parts;
+                            return(<div
                                 key={i}
-                                className="flex w-full shrink-0 snap-center flex-col items-center gap-2 px-1 text-center"
+                                className="flex w-full shrink-0 snap-center flex-col items-center gap-6  "
                             >
-                                <ParaButton para={t.para} />
-                                <div className="flex items-center gap-4 md:gap-10">
+                                <p className='leading-13 tracking-[-0.03em] text-center w-full max-w-222.5 '>
+                                    {part.map((p,index)=><span key={p} className={index%2==0 ? spanText1Class :spanText2Class }>{p}</span>)}
+                                </p>
+                                <div className="flex items-center gap-4 md:gap-10">     
                                     <Image
                                         src={Man}
                                         alt={t.name}
-                                        quality={[75,90]}
+                                        quality={[75, 90]}
                                         className="size-12 rounded-full object-cover md:size-15"
                                     />
                                     <div className="flex flex-col items-start">
@@ -84,8 +93,9 @@ const Testimonial = () => {
                                         <span className="font-outfit text-base font-thin md:text-xl">{t.company}</span>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            </div>)
+                            
+                        })}
                     </div>
 
                     <button
@@ -99,7 +109,7 @@ const Testimonial = () => {
                     </button>
                 </div>
 
-                <div className="grid w-full grid-cols-2 gap-2 sm:gap-4 md:gap-6 px-4 md:px-6 py-4 sm:py-6 md:py-10 md:flex md:items-center md:justify-between md:gap-10 lg:px-30">
+                <div className="grid w-full grid-cols-2 gap-2 sm:gap-4 px-4 md:px-6 py-4 sm:py-6 md:py-10 md:flex md:items-center md:justify-between md:gap-10 lg:px-30">
                     {data.map((item) => (
                         <TestiData key={item.text} number={item.number} text={item.text} />
                     ))}

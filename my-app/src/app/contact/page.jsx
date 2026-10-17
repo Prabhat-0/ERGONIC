@@ -23,6 +23,20 @@ export default function ContactPage() {
   const [success, setSuccess] = useState(null);
   const timerRef = useRef(null);
 
+  
+//logic for navigating to the input fields through enter 
+const inputRef=useRef([]);
+const handleEnter=(e,i)=>{
+  if(i==1 )return;
+  if(e.key!=='Enter')return;
+  const next=inputRef.current[i+1];
+  console.log(next);
+  e.preventDefault();
+  inputRef.current=next;
+  next.focus();
+  console.log(inputRef, " this inputRef is printed after all the handling of enter");
+}
+
   useEffect(() => () => clearTimeout(timerRef.current), []);
 
   const handleChange = (e) => {
@@ -35,14 +49,16 @@ export default function ContactPage() {
     const found = {};
     const name = fields.name.trim();
     const message = fields.message.trim();
-
-    if (name.length < 2) found.name = "Name is too short.";
+    if(name.length==0) found.name="Name is required";
+    else if (name.length < 2) found.name = "Name is too short.";
     else if (name.length > 20) found.name = "Name is too long.";
 
-    if (!EMAIL_RE.test(fields.email.trim()))
+    if(fields.email.trim().length==0)found.email="Email is required";
+    else if (!EMAIL_RE.test(fields.email.trim()))
       found.email = "Enter a valid email, like name@company.com.";
 
-    if (message.length < 10) found.message = "Message is too short.";
+    if(message.length==0)found.message="Message is required";
+    else if (message.length < 10) found.message = "Message is too short.";
     else if (message.length > 200) found.message = "Message is too long.";
 
     return found;
@@ -59,7 +75,6 @@ export default function ContactPage() {
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => setSuccess(null), 3000);
 
-    console.log(fields);
     setFields(initialFields);
   };
 
@@ -77,7 +92,7 @@ export default function ContactPage() {
           <form
             onSubmit={handleSubmit}
             noValidate
-            className="flex w-full min-w-0 flex-col gap-5 rounded-2xl border border-white/20 bg-white/[0.03] p-[clamp(16px,4vw,40px)]"
+            className="flex w-full min-w-0 flex-col gap-5 rounded-2xl border border-white/20 bg-white/3 p-[clamp(16px,4vw,40px)]"
           >
             {/** Input for full Name section  */}
 
@@ -85,6 +100,8 @@ export default function ContactPage() {
               <div className="flex min-w-0 flex-col gap-2">
                 <label htmlFor="name" className={labelCls}>Full name <span className="text-red-400 text-2xl ml-1">*</span></label>
                 <input
+                ref={el=>inputRef.current[0]=el}
+                onKeyDown={(e)=>handleEnter(e,0)}
                   id="name"
                   name="name"
                   type="text"
@@ -104,6 +121,8 @@ export default function ContactPage() {
                   <span className="text-red-400 text-2xl ml-1">*</span>
                 </label>
                 <input
+                ref={el=>inputRef.current[1]=el}
+                 onKeyDown={(e)=>handleEnter(e,1)}
                   id="email"
                   name="email"
                   type="email"
@@ -120,6 +139,7 @@ export default function ContactPage() {
             </div>
             {/** DropDown section */}
             <div className="flex min-w-0 flex-col gap-2">
+              
               <label htmlFor="topic" className={labelCls}>What is this about?<span className="text-red-400 text-2xl ml-1">*</span></label>
               <div className="relative">
                 <select
@@ -159,7 +179,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 aria-invalid={!!errors.message}
                 aria-describedby={errors.message ? "message-error" : undefined}
-                className={`${inputCls} min-h-[140px] resize-y`}
+                className={`${inputCls} min-h-35 resize-y`}
               />
               {errors.message && <p id="message-error" className={errorCls}>{errors.message}</p>}
             </div>

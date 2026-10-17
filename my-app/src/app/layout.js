@@ -31,7 +31,8 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${metal.variable} ${outfit.variable} ${dmSans.variable} h-full antialiased no-scrollbar data-scroll-behavior="smooth"`}
+      data-scroll-behavior="smooth"
+      className={`${metal.variable} ${outfit.variable} ${dmSans.variable} h-full antialiased no-scrollbar `}
     >
       <body className="min-h-full flex flex-col bg-black ">
         <NavBar/>

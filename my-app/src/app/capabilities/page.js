@@ -34,7 +34,7 @@ const page = () => {
 			<Hero id="capabilitiesHero" image={CapabilitesBg} headerText="Our" MainHeaderText="Capabilities." ParaText="Trusted by top investors and financial partners worldwide" />
 
 			{/**  ParaSection  */}
-			<section className="w-full px-4 md:px-6 lg:px-10 xl:px-0 py-16 lg:py-0 h-auto lg:h-[668px] flex items-center justify-center relative">
+			<section className="w-full px-4 md:px-6 lg:px-10 xl:px-0 py-16 lg:py-0 h-auto lg:h-167 flex items-center justify-center relative">
 
 				<ParaButton para="The design work that solves real problems for our emerging futures is complex. Space stations. New modes of mobility. Transformations to industrial systems. These are the kinds of brave endeavors that require audacity and an appetite for the wonderfully difficult. It’s what you do—and it’s what we do, too." text="know more" />
 			</section>
@@ -43,7 +43,7 @@ const page = () => {
 				<Container>
 					<PageHeading heading="what do we do" spanText1="Our " spanText2="Capabilities & Expertise" />
 					<div className='grid mt-0 md:mt-6 lg:mt-8 xl:mt-10 grid-cols-2 items-start gap-5 md:gap-10 lg:gap-15 xl:gap-25'>
-						<div className='w-full xl:max-w-282 flex flex-col items-start justify-center gap-6 md:gap-10 lg:gap-12.5 z-10 max-w-[453px]'>
+						<div className='w-full xl:max-w-282 flex flex-col items-start justify-center gap-6 md:gap-10 lg:gap-12.5 z-10 max-w-113.25'>
 							<article className='font-metal text-base md:text-xl lg:text-2xl leading-5 md:leading-7.5 tracking-[-3%]' >{article}</article>
 							<Button text={"Know More"} path='/contact'/>
 						</div>
@@ -67,7 +67,7 @@ const page = () => {
 				/>
 
 				{/* Dark gradient overlay for readability */}
-				<div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-[#0D0D0D]/40 via-[#0D0D0D]/80 to-[#0D0D0D]" />
+				<div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-[#0D0D0D]/40 via-[#0D0D0D]/80 to-[#0D0D0D]" />
 
 				<Container>
 					<div className="relative z-10 flex w-full flex-col gap-2 py-5 md:py-10 sm:gap-10 md:gap-16 lg:gap-22.5 lg:py-16 xl:py-40">
@@ -81,7 +81,7 @@ const page = () => {
 
 								<div className="grid grid-cols-1 items-center gap-6 md:gap-8 lg:grid-cols-2 lg:gap-11.2">
 									{/* Text column */}
-									<div className="order-2 flex h-full w-full flex-col justify-center gap-2 py-2 md:gap-6 lg:order-1 lg:max-w-[490px]">
+									<div className="order-2 flex h-full w-full flex-col justify-center gap-2 py-2 md:gap-6 lg:order-1 lg:max-w-122.5">
 										{cardData.map((card, cardIndex) => (
 											<div
 												key={cardIndex}

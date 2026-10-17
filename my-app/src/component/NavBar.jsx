@@ -112,7 +112,7 @@ const NavBar = () => {
 									}`}
 							/>
 							<span
-								className={`h-px w-5 bg-white transition-all duration-300 ${open ? '-translate-y-[3.5px] -rotate-45' : ''
+								className={`h-px w-5 bg-white transition-all duration-300 ${open ? 'translate-y-[-3.5px] -rotate-45' : ''
 									}`}
 							/>
 						</button>

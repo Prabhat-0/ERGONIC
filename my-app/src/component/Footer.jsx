@@ -37,7 +37,7 @@ const Footer = () => {
                 alt="Technology expertise"
                 quality={[75,90]}
                 sizes="100vw"
-                className='hidden md:flex w-full h-auto'
+                className='hidden md:flex w-full h-auto mt-0'
             />
 
             <Container>
@@ -60,7 +60,7 @@ const Footer = () => {
                         {/* Address + email */}
                         <div className='col-span-2 md:col-span-1 flex min-w-0 flex-col gap-3 sm:gap-5'>
                             <p className={`${style} whitespace-pre-line`}>{address}</p>
-                            <a href="mailto:info@ergonic.ca" className={`${style} break-words border-t border-white/40`}>
+                            <a href="mailto:info@ergonic.ca" className={`${style} wrap-break-word border-t border-white/40`}>
                                 info@ergonic.ca
                             </a>
                         </div>

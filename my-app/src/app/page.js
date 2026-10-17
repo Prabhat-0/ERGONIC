@@ -82,13 +82,13 @@ const cardDetails = [
 
 const roboticsElectronicsPara = "We are an award winning design and engineering firm specializing in the development of novel consumer electronics, medical devices, drone technology, robotics, and architectural solutions.";
 export default function Home() {
-    
+
     return (
         <div className="w-full h-auto ">
             {/** HERO Section */}
             <Hero id="mainHero" image={HeroBg} headerText={"Future Industries"} MainHeaderText={"Designed Today."} ParaText={"Trusted by top investors and financial partners worldwide"} />
             {/**About  */}
-            <section id="about" className="w-full h-auto px-4 md:px-6 lg:px-10 xl:px-0 py-10 md:py-16 lg:py-0 lg:h-[668px] flex items-center justify-center relative bg-[#0D0D0D]">
+            <section id="about" className="w-full h-auto px-4 md:px-6 lg:px-10 xl:px-0 py-10 md:py-16 lg:py-0 lg:h-167 flex items-center justify-center relative bg-[#0D0D0D]">
                 <Image src={RoboticsElectronics} quality={[75, 90]} loading="lazy" alt="RoboticsElectornicsImg" className="absolute bottom-4 left-0 w-full h-auto" />
                 <ParaButton para={roboticsElectronicsPara} text="know more" />
             </section>
@@ -121,7 +121,7 @@ export default function Home() {
                                     >
                                         {/* Card */}
                                         <div
-                                            className={`relative order-1 flex transition-all duration-300 ease-in-out w-full max-w-[500px] min-w-0 flex-col gap-3 px-5 pt-5 min-h-[clamp(320px,calc(200px+25vw),460px)] md:flex-1 md:basis-0 ${flip
+                                            className={`relative order-1 flex transition-all duration-300 ease-in-out w-full max-w-125 min-w-0 flex-col gap-3 px-5 pt-5 min-h-[clamp(320px,calc(200px+25vw),460px)] md:flex-1 md:basis-0 ${flip
                                                 ? "md:order-2 md:ml-auto "
                                                 : "md:order-1 "
                                                 }`}
@@ -146,7 +146,7 @@ export default function Home() {
 
                                             {/* Main image */}
                                             <div
-                                                className={`absolute bottom-0 right-0 h-full group w-fit max-w-full md:max-w-none flex-1 ${item.height ? "max-h-[400px]" : "max-h-[300px]"
+                                                className={` absolute bottom-0 right-0 h-full group w-fit max-w-full md:max-w-none flex-1 ${item.height ? "max-h-100" : "max-h-75"
                                                     } ${flip
                                                         ? "md:right-auto md:-left-[clamp(8px,4vw,80px)]"
                                                         : "md:-right-[clamp(8px,4vw,80px)]"
@@ -157,20 +157,20 @@ export default function Home() {
                                                     quality={[75, 90]}
                                                     loading="lazy"
                                                     alt={`${item.spanText1} ${item.spanText2}`}
-                                                    className="h-full w-full object-fill sm:object-contain z-20 "
+                                                    className="h-full w-full object-contain lg:object-cover z-20 "
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Text column (styling untouched) */}
                                         <div
-                                            className={`order-2 flex w-full min-w-0 md:flex-1 md:basis-0 flex-col px-4 md:px-6 lg:px-4 items-center justify-center gap-4 text-left ${flip
+                                            className={`order-2 flex w-full min-w-0 md:flex-1 md:basis-0 flex-col px-4 md:px-6 lg:px-4 items-center justify-center gap-4 ${flip
                                                 ? "md:order-1 md:items-start md:text-left"
                                                 : "md:order-2 md:items-end md:text-right"
                                                 }`}
                                         >
-                                            <div className="max-w-[405px]">
-                                                <span className="font-metal text-center font-regular text-[32px] leading-[36px] tracking-[-0.03em] sm:text-[40px] sm:leading-[44px] lg:text-[50px] lg:leading-[52px]">
+                                            <div className="max-w-101.25">
+                                                <span className="font-metal text-center font-regular text-[32px] leading-9tracking-[-0.03em] sm:text-[40px] sm:leading-11 lg:text-[50px] lg:leading-13">
                                                     <span className="block">{item.spanText1}</span>
                                                     {item.spanText2 && <span className="block">{item.spanText2}</span>}
                                                 </span>
@@ -178,7 +178,7 @@ export default function Home() {
                                                 <Paragraph
                                                     para={item.para}
                                                     fontStyle="font-metal font-regular"
-                                                    textSize="text-base lg:text-xl text-start"
+                                                    textSize="text-base lg:text-xl text-center"
                                                     leading="leading-[22px] lg:leading-[24px] tracking-[-0.03em]"
                                                 />
 
@@ -198,7 +198,7 @@ export default function Home() {
 
 
                         </div>
-                       
+
                     </Container>
                 </div>
             </section>
@@ -225,19 +225,37 @@ export default function Home() {
             <Testimonial />
             <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
             {/**Clients section */}
-            <section id="clients" className="w-full h-auto   bg-black flex flex-col justify-center items-center py-10 md:py-15 lg:py-25">
+            <section
+                id="clients"
+                className="w-full h-auto bg-black flex flex-col justify-center items-center py-10 md:py-15 lg:py-25"
+            >
                 <Container>
+                    <PageHeading
+                        heading="Our clients"
+                        spanText1={"Trusted by  "}
+                        spanText2={"Industry Leaders"}
+                        spanStyle="font-metal font-light lg:text-5xl md:text-2xl text-xl xl:text-[60px]"
+                    />
 
-                    <PageHeading heading="Our clients" spanText1={"Trusted by  "} spanText2={"Industry Leaders"} spanStyle="font-metal font-light lg:text-5xl md:text-2xl text-xl xl:text-[60px]" />
-                    <div className="mt-2 md:mt-5 w-full grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 gap-2.5 items-center justify-center px-4 md:px-6 lg:px-0">
-                        {images.map((image, index) => {
-                            return <div key={index} className="w-fit max-w-50 h-fit">
-                                <Image src={image} className="object-cover" quality={[75, 90]} alt="ClientsLogo" lazyloading="lazy" />
+                    <div className="mt-2 md:mt-5 w-full flex flex-wrap justify-center gap-2.5 px-4 md:px-8 lg:px-6 xl:px-0">
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center justify-center
+                                w-[calc((100%-20px)/3)]
+                                md:w-[calc((100%-30px)/4)]
+                                lg:w-[calc((100%-40px)/5)]"
+                            >
+                                <Image
+                                    src={image}
+                                    className="object-contain max-w-full h-auto"
+                                    quality={75}
+                                    alt="Clients logo"
+                                    loading="lazy"
+                                />
                             </div>
-                        })}
+                        ))}
                     </div>
-
-
                 </Container>
             </section>
             <div className="relative h-px w-full bg-[linear-gradient(90deg,rgba(0,0,0,0)_2%,#D9D9D9_50.55%,rgba(0,0,0,0)_100%)]" />
