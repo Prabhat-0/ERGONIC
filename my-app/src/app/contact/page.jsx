@@ -30,12 +30,13 @@ const handleEnter=(e,i)=>{
   if(i==1 )return;
   if(e.key!=='Enter')return;
   const next=inputRef.current[i+1];
-  console.log(next);
+  console.log("printing the next field : ", next);
   e.preventDefault();
-  inputRef.current=next;
   next.focus();
-  console.log(inputRef, " this inputRef is printed after all the handling of enter");
+  console.log("Printing the current filed of inutRef:- ",inputRef.current);
 }
+
+//clearing the timeout when the page re renders 
 
   useEffect(() => () => clearTimeout(timerRef.current), []);
 

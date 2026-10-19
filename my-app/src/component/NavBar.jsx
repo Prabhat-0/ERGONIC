@@ -7,6 +7,9 @@ import { usePathname } from 'next/navigation'
 import logo from '../../public/logo.png'
 import { Arrow } from '@/svg'
 import Button from './Button'
+import { FaArrowDown } from 'react-icons/fa'
+import { LiaChevronDownSolid } from 'react-icons/lia'
+import DropDown from './DropDown'
 
 const NavItem = [
 	{ text: 'Work', path: '/#projects' },
@@ -18,16 +21,28 @@ const NavItem = [
 	{ text: 'Contact', path: '/contact' },
 ]
 
+const languages = [
+	{ flag: "🇮🇳", country: "हिन्दी", value: "hi/हिं" },
+	{ flag: "🇬🇧", country: "English", value: "en" },
+	{ flag: "🇪🇸", country: "Español", value: "es" },
+	{ flag: "🇯🇵", country: "日本語", value: "ja" },
+	{ flag: "🇷🇺", country: "Русский", value: "ru" },
+]
+
+
 const NavBar = () => {
 	const pathname = usePathname()
 	const [scrolled, setScrolled] = useState(false)
 	const [open, setOpen] = useState(false)
+	const [dropDown, setDropDown] = useState(false);
 
+	const [selected, setSelected] = useState('en');
+	console.log("Printing the selected ", selected);
 	// black background after scrolling 20px
 	useEffect(() => {
 		const onScroll = () => {
-  setScrolled(window.scrollY > 20);
-};
+			setScrolled(window.scrollY > 20);
+		};
 		onScroll()
 		window.addEventListener('scroll', onScroll, { passive: true })
 		return () => window.removeEventListener('scroll', onScroll)
@@ -67,7 +82,7 @@ const NavBar = () => {
 					<Image
 						src={logo}
 						alt='logo'
-						quality={[75,90]}
+						quality={[75, 90]}
 						priority
 						sizes='(max-width: 640px) 112px, (max-width: 1536px) 176px, 240px'
 						className='h-auto w-28 object-contain sm:w-36 xl:w-44 2xl:w-60'
@@ -90,33 +105,51 @@ const NavBar = () => {
 						))}
 					</ul>
 
-					
+
 				</div>
 				{/* CTA + hamburger */}
-					<div className='flex items-center gap-3'>
-						{/* On phones the CTA lives inside the mobile menu instead */}
-						<div className='hidden sm:block'>
-							<Button text="Let's Connect" path="/contact" />
-						</div>
-
-						<button
-							type='button'
-							onClick={() => setOpen((v) => !v)}
-							aria-label='Toggle menu'
-							aria-expanded={open}
-							aria-controls='mobile-menu'
-							className='flex size-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 focus-visible:outline-2 focus-visible:outline-orange sm:size-11 xl:hidden'
-						>
-							<span
-								className={`h-px w-5 bg-white transition-all duration-300 ${open ? 'translate-y-[3.5px] rotate-45' : ''
-									}`}
-							/>
-							<span
-								className={`h-px w-5 bg-white transition-all duration-300 ${open ? 'translate-y-[-3.5px] -rotate-45' : ''
-									}`}
-							/>
-						</button>
+				<div className='flex items-center gap-3'>
+					<div className='relative cursor-pointer whitespace-nowrap text-white/60 hover:text-white/90 transition-all duration-300 ease-in-out flex items-center gap-8 mr-3 pl-10 pr-6 py-4 border rounded-full border-white/50 bg-white/5  backdrop-blur-2xl ' onClick={() => setDropDown(prev => !prev)}>
+						<span className="whitespace-nowrap" >{selected==='en'?"EN / हिं" : selected.toUpperCase()}</span>
+						<LiaChevronDownSolid />
+						
 					</div>
+					{dropDown && (
+							<DropDown
+								languages={languages}
+								selected={selected}
+								onSelect={(value) => {
+									setSelected(value)
+									setDropDown(false)
+								}}
+							/>
+						)}
+
+
+
+					{/* On phones the CTA lives inside the mobile menu instead */}
+					<div className='hidden sm:block'>
+						<Button text="Let's Connect" path="/contact" />
+					</div>
+
+					<button
+						type='button'
+						onClick={() => setOpen((v) => !v)}
+						aria-label='Toggle menu'
+						aria-expanded={open}
+						aria-controls='mobile-menu'
+						className='flex size-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 focus-visible:outline-2 focus-visible:outline-orange sm:size-11 xl:hidden'
+					>
+						<span
+							className={`h-px w-5 bg-white transition-all duration-300 ${open ? 'translate-y-[3.5px] rotate-45' : ''
+								}`}
+						/>
+						<span
+							className={`h-px w-5 bg-white transition-all duration-300 ${open ? 'translate-y-[-3.5px] -rotate-45' : ''
+								}`}
+						/>
+					</button>
+				</div>
 			</nav>
 
 			{/* Mobile / tablet menu (below xl) */}
